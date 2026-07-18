@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityCab Booking System</title>
+    <style>
+       
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        
+        .bg-img {
+            background-image: url("city-image.jpg");
+            min-height: 100vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bg-img::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+
+        
+        
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 8vw;
+            color: #ffcc00; /* Classic taxi yellow accent */
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin: 20px 0 10px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-subtitle {
+            font-size: 3vw;
+            color: #f2f2f2;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            letter-spacing: 2px;
+        }
+
+        
+        .topnav {
+            display: inline-block;
+            overflow: hidden;
+            background-color: #111;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border: 1px solid #ffcc00;
+        }
+
+        .topnav a {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .topnav a:hover {
+            background-color: #ffcc00;
+            color: black;
+        }
+
+        
+        .welcome-section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 40px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* --- Gallery Grid Layout --- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            border: 1px solid #ddd;
+            background-color: white;
+            width: 220px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            border: 1px solid #ffcc00;
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .flex-container > div {
+            flex: 1;
+            background-color: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid #ffcc00;
+        }
+
+        .flex-container h2 {
+            font-family: Impact, sans-serif;
+            color: #222;
+            border-bottom: 2px solid #f7f9fb;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .flex-container ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .flex-container ul li {
+            margin-bottom: 10px;
+        }
+
+        .flex-container ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .flex-container ul li a:hover {
+            text-decoration: underline;
+            color: #ccaa00;
+        }
+        .res-form {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-submit {
+            background-color: #ffd900;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-family: Impact, sans-serif;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff0000;
+        }
+
+
+        
+        @media screen and (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+            .hero-title { font-size: 12vw; }
+            .hero-subtitle { font-size: 5vw; }
+            .topnav a { float: none; display: block; width: 100%; text-align: center; }
+        }
+        footer {
+  padding: 20px;
+  text-align: center;
+  background: #FFD700;
+}
+div.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+    </style>
+    
+</head>
+<body>
+
+    <div class="bg-img" style="background-color: #ffcc00;">
+        <div class="container">
+            <div class="topnav">
+                <a href="#booknow">Book Now</a>
+                <a href="#Rates">Rates</a>
+                <a href="#Fleet">Our Fleet</a>
+                <a href="#Corporate">Corporate Accounts</a>
+            </div>
+            <h1 class="hero-title">CITYCAB SYSTEMS</h1>
+            <p class="hero-subtitle">RELIABLE | SAFE | 24/7 SERVICE</p>
+        </div>
+    </div>
+
+    <div class="welcome-section">
+        <h2 class="welcome-title">YOUR PREMIUM RIDE, JUST A CLICK AWAY</h2>
+        <p class="welcome-text">
+            Transportation is more than just getting from point A to point B; it is about reliability, comfort, and peace of mind. 
+            From the time-sensitive rush of an airport transfer to the smooth cruise of an evening out, your journey matters. 
+            At CityCab, we bring professionalism to the road, maintaining a top-tier fleet managed by vetted, professional drivers. 
+            Turn your daily commute into a stress-free experience because you deserve nothing less than exceptional service.
+        </p>
+
+        <div class="gallery">
+            <div class="gallery-item"><img src="standard-sedan.avif" alt="Standard Sedan"></div>
+            <div class="gallery-item"><img src="suv.webp" alt="Premium SUV"></div>
+            <div class="gallery-item"><img src="luxury car cab.jpg" alt="Luxury Black Car"></div>
+            <div class="gallery-item"><img src="accse van.webp" alt="Accessible Van"></div>
+            <div class="gallery-item"><img src="electric-taxis.webp" alt="Eco-Friendly Electric Taxi"></div>
+            <div class="gallery-item"><img src="minivan.jfif" alt="Family Minivan"></div>
+            <div class="gallery-item"><img src="shuttle.jpg" alt="Airport Shuttle Bus"></div>
+            <div class="gallery-item"><img src="taxi comfo.jpg" alt="Vehicle Interior Comfort"></div>
+        </div>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 0 auto 40px auto;">
+
+<div id="page-reservation" class="page-section">
+        <div class="content-wrapper">
+            <h2 class="page-title" style="text-align: center;">BOOK YOUR RIDE</h2>
+            <form class="res-form" onsubmit="alert('Reservation submitted successfully!'); return false;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label>Car Type</label>
+                    <select>
+                        <option>Van (3 seater)</option>
+                        <option>Cab (4 Seater)</option>
+                        <option>Mini Bus (15 Seater)</option>
+                        <option>Bus (Large Party)</option>
+                        <option>None</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date & Time</label>
+                    <input type="datetime-local" required>
+                </div>
+                <button type="submit" class="btn-submit" style="color: #000000;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+<pre>
+    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 0 auto 40px auto;">
+</pre>
+    <div class="flex-container">
+        <div>
+            <h2>Useful Links</h2>
+            <ul>
+                <li><a href="#">Terms & Passenger Rights</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Support & Contact Info</a></li>
+                <li><a href="#">Become a Driver</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Our Fleet Standards</h2>
+            <p>Every vehicle in our system undergoes rigorous daily safety inspections and professional cleaning.</p>
+            <p>Monitored via GPS 24/7 by our dispatch center to ensure absolute safety, direct routing, and efficient scheduling for your peace of mind.</p>
+        </div>
+
+        <div>
+            <h2>City Zones & Airport Rates</h2>
+            <p>Enjoy flat-rate journeys to all major city airports. No surge pricing, hidden fees, or unexpected baggage surcharges during peak transit hours.</p>
+        </div>  
+      
+    </div>
+
+</body>
+</html>
