@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityCab Booking System</title>
     <style>
-       
         body {
             font-family: sans-serif;
             margin: 0;
@@ -17,10 +16,11 @@
             box-sizing: border-box;
         }
 
-        
+        /* --- Hero Section & Background Image --- */
         .bg-img {
             background-image: url("city-image.jpg");
-            min-height: 100vh;
+            background-color: #ffcc00; /* Fallback color */
+            min-height: 80vh; /* Reduced from 100vh for a cleaner look on mobile devices */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -28,18 +28,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 40px 0;
         }
+
         .bg-img::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4); /* Darkened slightly for better readability */
             z-index: 1;
         }
-
-
-        
-        
 
         .container {
             position: relative;
@@ -51,16 +49,18 @@
             padding: 20px;
         }
 
+        /* Fluid typography scales smoothly on desktop and mobile layout */
         .hero-title {
-            font-size: 8vw;
-            color: #ffcc00; /* Classic taxi yellow accent */
+            font-size: clamp(2.5rem, 6vw, 5.5rem); 
+            color: #ffcc00; 
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             margin: 20px 0 10px 0;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: 3vw;
+            font-size: clamp(1rem, 2.5vw, 2rem);
             color: #f2f2f2;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             margin: 0;
@@ -68,24 +68,25 @@
             letter-spacing: 2px;
         }
 
-        
+        /* --- Navigation --- */
         .topnav {
-            display: inline-block;
-            overflow: hidden;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
             background-color: #111;
             border-radius: 4px;
             margin-bottom: 30px;
             border: 1px solid #ffcc00;
+            overflow: hidden;
         }
 
         .topnav a {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            float: left;
             color: #f2f2f2;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 1px;
             transition: 0.3s;
         }
@@ -95,9 +96,9 @@
             color: black;
         }
 
-        
+        /* --- Welcome Section --- */
         .welcome-section {
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
             max-width: 1000px;
             margin: 0 auto;
@@ -105,24 +106,23 @@
 
         .welcome-title {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            font-size: 40px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: #222;
             margin-bottom: 20px;
         }
 
         .welcome-text {
             font-family: Arial, sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.6;
             color: #555;
             margin-bottom: 40px;
         }
 
-        /* --- Gallery Grid Layout --- */
+        /* --- Responsive Gallery Grid Layout --- */
         .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 50px;
         }
@@ -130,7 +130,6 @@
         .gallery-item {
             border: 1px solid #ddd;
             background-color: white;
-            width: 220px;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -149,10 +148,10 @@
             display: block;
         }
 
-        
+        /* --- Info Flex Grid Layout --- */
         .flex-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             max-width: 1200px;
             margin: 0 auto 50px auto;
             padding: 0 20px;
@@ -194,6 +193,12 @@
             text-decoration: underline;
             color: #ccaa00;
         }
+
+        /* --- Booking Form --- */
+        .page-section {
+            padding: 20px;
+        }
+
         .res-form {
             background: white;
             max-width: 600px;
@@ -218,62 +223,71 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 16px;
         }
 
         .btn-submit {
             background-color: #ffd900;
-            color: white;
+            color: black;
             border: none;
             padding: 12px 20px;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
             font-family: Impact, sans-serif;
+            transition: 0.2s;
         }
 
         .btn-submit:hover {
             background-color: #ff0000;
+            color: white;
         }
 
-
-        
-        @media screen and (max-width: 768px) {
-            .flex-container {
-                flex-direction: column;
-            }
-            .hero-title { font-size: 12vw; }
-            .hero-subtitle { font-size: 5vw; }
-            .topnav a { float: none; display: block; width: 100%; text-align: center; }
-        }
+        /* --- Footer --- */
         footer {
-  padding: 20px;
-  text-align: center;
-  background: #FFD700;
-}
-div.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
+            padding: 20px;
+            text-align: center;
+            background: #FFD700;
+            font-weight: bold;
+        }
+
+        /* --- Tablet & Desktop Media Queries --- */
+        @media screen and (min-width: 768px) {
+            .flex-container {
+                flex-direction: row;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .topnav {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .topnav a {
+                border-bottom: 1px solid #333;
+            }
+        }
     </style>
-    
 </head>
 <body>
 
-    <div class="bg-img" style="background-color: #ffcc00;">
+    <!-- Hero Header -->
+    <div class="bg-img">
         <div class="container">
             <div class="topnav">
-                <a href="#booknow">Book Now</a>
-                <a href="#Rates">Rates</a>
-                <a href="#Fleet">Our Fleet</a>
-                <a href="#Corporate">Corporate Accounts</a>
+                <a href="#page-reservation">Book Now</a>
+                <a href="#">Rates</a>
+                <a href="#">Our Fleet</a>
+                <a href="#">Corporate Accounts</a>
             </div>
             <h1 class="hero-title">CITYCAB SYSTEMS</h1>
             <p class="hero-subtitle">RELIABLE | SAFE | 24/7 SERVICE</p>
         </div>
     </div>
 
+    <!-- Main Content Summary -->
     <div class="welcome-section">
         <h2 class="welcome-title">YOUR PREMIUM RIDE, JUST A CLICK AWAY</h2>
         <p class="welcome-text">
@@ -283,6 +297,7 @@ div.gallery {
             Turn your daily commute into a stress-free experience because you deserve nothing less than exceptional service.
         </p>
 
+        <!-- Dynamic Grid Fleet Gallery -->
         <div class="gallery">
             <div class="gallery-item"><img src="standard-sedan.avif" alt="Standard Sedan"></div>
             <div class="gallery-item"><img src="suv.webp" alt="Premium SUV"></div>
@@ -294,13 +309,20 @@ div.gallery {
             <div class="gallery-item"><img src="taxi comfo.jpg" alt="Vehicle Interior Comfort"></div>
         </div>
     </div>
-    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 0 auto 40px auto;">
-<body>
-            <marquee scrollamont="10" style="color: #ffcc00;">FLAT 20% DISCOUNT ON FIRST BOOKING!  | USE DEETEXT CODE FOR FREE RIDE</marquee>
-            </body>
-<div id="page-reservation" class="page-section">
+    
+    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 0 auto 20px auto;">
+    
+    <!-- Promotion Bar -->
+    <div style="background-color: #111; padding: 10px 0;">
+        <marquee scrollamount="10" style="color: #ffcc00; font-family: Impact, sans-serif; font-size: 16px;">
+            FLAT 20% DISCOUNT ON FIRST BOOKING!  |  USE CODE: DEETEXT FOR FREE RIDE
+        </marquee>
+    </div>
+
+    <!-- Booking Form Section -->
+    <div id="page-reservation" class="page-section">
         <div class="content-wrapper">
-            <h2 class="page-title" style="text-align: center;">BOOK YOUR RIDE</h2>
+            <h2 class="page-title" style="text-align: center; font-family: Impact, sans-serif; color: #222;">BOOK YOUR RIDE</h2>
             <form class="res-form" onsubmit="alert('Reservation submitted successfully!'); return false;">
                 <div class="form-group">
                     <label>Full Name</label>
@@ -320,13 +342,14 @@ div.gallery {
                     <label>Date & Time</label>
                     <input type="datetime-local" required>
                 </div>
-                <button type="submit" class="btn-submit" style="color: #000000;">Confirm Booking</button>
+                <button type="submit" class="btn-submit">Confirm Booking</button>
             </form>
         </div>
     </div>
-<pre>
-    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 0 auto 40px auto;">
-</pre>
+
+    <hr style="border: 0; border-top: 1px solid #ddd; max-width: 1200px; margin: 40px auto;">
+
+    <!-- Information Flex Grid -->
     <div class="flex-container">
         <div>
             <h2>Useful Links</h2>
@@ -347,9 +370,13 @@ div.gallery {
         <div>
             <h2>City Zones & Airport Rates</h2>
             <p>Enjoy flat-rate journeys to all major city airports. No surge pricing, hidden fees, or unexpected baggage surcharges during peak transit hours.</p>
-        </div>  
-      
+        </div>    
     </div>
+
+    <!-- Global Footer -->
+    <footer>
+        &copy; 2026 CityCab Systems. All Rights Reserved.
+    </footer>
 
 </body>
 </html>
